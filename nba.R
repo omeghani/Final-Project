@@ -1,6 +1,6 @@
 library(tidyverse)
-library(devtools)
-library(twitteR)
+# library(devtools)
+# library(twitteR)
 library(tidytext)
 
 teams <- read.csv("winningteams.csv")
