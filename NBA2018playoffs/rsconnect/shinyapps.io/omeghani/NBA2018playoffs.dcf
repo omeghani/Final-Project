@@ -1,0 +1,12 @@
+name: NBA2018playoffs
+title: NBA2018playoffs
+username:
+account: omeghani
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 339074
+bundleId: 1361542
+url: https://omeghani.shinyapps.io/NBA2018playoffs/
+when: 1525749091.75232
+asMultiple: FALSE
+asStatic: FALSE

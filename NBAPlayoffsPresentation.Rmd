@@ -1,0 +1,71 @@
+---
+title: "NBA Playoffs Analysis"
+author: "Ozair Meghani"
+date: "5/7/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(devtools)
+library(twitteR)
+library(tidytext)
+source("nba.R")
+```
+
+#**NBA Playoffs Analysis**
+
+### My Analysis begins by looking at NBA Championship teams, as well as the other 3 teams to make it the furthest in the playoffs each year, from 1996 through 2016. I decided to look at four components from these teams' regular season statistics that Dean Oliver (https://www.basketball-reference.com/about/factors.html) identifies as the 'Four Factors of Basketball Success.These four components are Shooting (40%), Turnovers (25%), Rebounding (20%), and Free Throws (15%). I combined these stats with the listed weights to calculate an FFBS Score for each team. The higher the FFBS Score the better the team should be performing. The idea was to see if there was a statistical difference between the scores of the Championship Teams vs. those of the teams that made it far in the playoffs but did not win. I wanted to explore and see if calculating the FFBS Score of teams currently in the 2018 playoffs would provide me with any indication of which team is most likely to win the Championship this year.
+```{r, echo=FALSE}
+FFBSchampplot
+```
+
+### The plot above is a bar plot showing the FFBS Scores of the Championship teams from 1996 through 2016. 
+
+### I conducted a T-test between the mean FFBS Scores of the Championship teams versus that of their competitors who made it far in the playoffs but did not win. The results of that test shown below tell us that there is no statistical difference between the mean scores of the champions compared to the non-champions. This suggests that FFBS scores may not be the best indicator of a team's playoff success. 
+
+```{r, echo=FALSE}
+t.test(champscores$FFBSScore, nonchampscores$FFBSScore, var.equal = T)
+```
+
+### Additionally I ranked the teams from 1-4 for each year based on FFBS Score. So the 4 teams (1 championship team and 3 others) for 1996 were ranked from 1 (highest FFBS Score) to 4 (lowest FFBS Score), and so on for each year until 2016. I then took an average of the rankings for just the championship teams from each year. The mean rank of the championship teams was about 2.43, also indicating that championship teams did not necessarily have the highest FFBS score compared with their competitors.
+
+```{r,echo=FALSE}
+mean(rank$Rank)
+```
+
+### The final portion of my analysis dealing with the historic championship teams was to create a time series plot (below) of the FFBS scores for the championship teams. By observing the plot you can see a gradual increase in FFBS Scores over the year suggesting that it becomes more and more competitive for a team to win the championship each year. As times moves the on average the shooting, rebounding, and free throw percentages of the winning teams increaases while the turnover rate decreases. 
+
+```{r,echo=FALSE}
+ts
+```
+
+## **Analysis of Current 2018 NBA Playoff Teams**
+
+### My analysis of the 8 teams currenlty left in the 2018 playoffs started with Twitter. I decided to look at the 1000 most recent tweets (real time data) mentioning all of these teams' official twitter accounts. I conducted a positive/negative sentiment analysis on the tweets and came up with a sentiment score for each team. I wanted to see if more 'postive' or more 'negative' tweets correlated with how the teams are currenlty performing in the playoffs as well as how likely they are to win the championship this year.
+
+### The following plot is an example visualization of the sentiment analyis of the tweets for the Boston Celtics
+
+```{r,echo=FALSE}
+ggplot(c_sentiment, aes(index, sentiment)) +
+  geom_col(show.legend = FALSE,col=13) + ggtitle("Boston Celtics Tweets Sentiment Analysis")
+```
+
+### The bar plot below shows the sentiment score for each team that I calculated. 
+
+```{r,echo=FALSE}
+sentplot
+```
+
+### The plot below shows the ranking of each team from 1-8 based on sentiment score with 1 being the highest and 8 being the lowest. If one was to base predictions for most likely to win the championship based on sentiment score this plot demonstrates that. The issue is that this plot has New Orleans ranked number 1, Utah Jazz number 2, the Cavaliers number 8, and the Warriors at number 5. These predictions are not accurate as the Pelicans and Jazz are currently losing their current series and will most likely be eliminated while the Warriors and the Cavaliers are favored to win. This sentiment ranking plot below demonstrates that there is not a positive correlation between positive sentiment and playoff success.
+
+```{r,echo=FALSE}
+sentrankplot
+```
+
+### The final plot shown below ranks the 8 current teams based on their FFBS Score. Interestingly enough it is the most accurate even though there was no evidence showing that FFBS Scores of Championship teams were higher than that of their competitors. This plot has the Warriors ranked number 1, the Rockets at number 2, and the Caveliers at number 4. Those three teams are the three most favored teams currently in the playoffs according to fans and analysts. Thus FFBS Scores can be somewhat useful in predicting playoff success as shown below. 
+
+```{r,echo=FALSE}
+FFBSrankplot
+```
