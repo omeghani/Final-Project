@@ -35,7 +35,7 @@ t.test(champscores$FFBSScore, nonchampscores$FFBSScore, var.equal = T)
 mean(rank$Rank)
 ```
 
-### The final portion of my analysis dealing with the historic championship teams was to create a time series plot (below) of the FFBS scores for the championship teams. By observing the plot you can see a gradual increase in FFBS Scores over the year suggesting that it becomes more and more competitive for a team to win the championship each year. As times moves the on average the shooting, rebounding, and free throw percentages of the winning teams increaases while the turnover rate decreases. 
+### The final portion of my analysis dealing with the historic championship teams was to create a time series plot (below) of the FFBS scores for the championship teams. By observing the plot you can see a gradual increase in FFBS Scores over the year suggesting that it becomes more and more competitive for a team to win the championship each year. As time moves on, the average shooting, rebounding, and free throw percentages of the winning teams increaase while the turnover rate decreases. 
 
 ```{r,echo=FALSE}
 ts
@@ -45,7 +45,7 @@ ts
 
 ### My analysis of the 8 teams currenlty left in the 2018 playoffs started with Twitter. I decided to look at the 1000 most recent tweets (real time data) mentioning all of these teams' official twitter accounts. I conducted a positive/negative sentiment analysis on the tweets and came up with a sentiment score for each team. I wanted to see if more 'postive' or more 'negative' tweets correlated with how the teams are currenlty performing in the playoffs as well as how likely they are to win the championship this year.
 
-### The following plot is an example visualization of the sentiment analyis of the tweets for the Boston Celtics
+### The following plot is an example visualization of the sentiment analysis of the tweets for the Boston Celtics
 
 ```{r,echo=FALSE}
 ggplot(c_sentiment, aes(index, sentiment)) +
@@ -58,7 +58,7 @@ ggplot(c_sentiment, aes(index, sentiment)) +
 sentplot
 ```
 
-### The plot below shows the ranking of each team from 1-8 based on sentiment score with 1 being the highest and 8 being the lowest. If one was to base predictions for most likely to win the championship based on sentiment score this plot demonstrates that. The issue is that this plot has New Orleans ranked number 1, Utah Jazz number 2, the Cavaliers number 8, and the Warriors at number 5. These predictions are not accurate as the Pelicans and Jazz are currently losing their current series and will most likely be eliminated while the Warriors and the Cavaliers are favored to win. This sentiment ranking plot below demonstrates that there is not a positive correlation between positive sentiment and playoff success.
+### The plot below shows the ranking of each team from 1-8 based on sentiment score with 1 being the highest and 8 being the lowest. If one was to base predictions for the team most likely to win the championship based on sentiment score this plot demonstrates that. The issue is that this plot has New Orleans ranked number 1, Utah Jazz number 2, the Cavaliers number 8, and the Warriors at number 5. These predictions are not accurate as the Pelicans and Jazz are currently losing their current series and will most likely be eliminated while the Warriors and the Cavaliers are favored to win. This sentiment ranking plot below demonstrates that there is not a positive correlation between positive sentiment and playoff success.
 
 ```{r,echo=FALSE}
 sentrankplot
