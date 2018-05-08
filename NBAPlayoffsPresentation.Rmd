@@ -16,14 +16,14 @@ source("nba.R")
 
 #**NBA Playoffs Analysis**
 
-### My Analysis begins by looking at NBA Championship teams, as well as the other 3 teams to make it the furthest in the playoffs each year, from 1996 through 2016. I decided to look at four components from these teams' regular season statistics that Dean Oliver (https://www.basketball-reference.com/about/factors.html) identifies as the 'Four Factors of Basketball Success.These four components are Shooting (40%), Turnovers (25%), Rebounding (20%), and Free Throws (15%). I combined these stats with the listed weights to calculate an FFBS Score for each team. The higher the FFBS Score the better the team should be performing. The idea was to see if there was a statistical difference between the scores of the Championship Teams vs. those of the teams that made it far in the playoffs but did not win. I wanted to explore and see if calculating the FFBS Score of teams currently in the 2018 playoffs would provide me with any indication of which team is most likely to win the Championship this year.
+### My Analysis begins by looking at NBA Championship teams, as well as the other 3 teams to make it the furthest in the playoffs each year, from 1996 through 2016. My data was collected from www.basketball-reference.com and www.stats.nba.com. I decided to look at four components from these teams' regular season statistics that Dean Oliver (https://www.basketball-reference.com/about/factors.html) identifies as the 'Four Factors of Basketball Success. These four components are Shooting (40%), Turnovers (25%), Rebounding (20%), and Free Throws (15%). I combined these stats with the listed weights to calculate an FFBS Score for each team. The higher the FFBS Score the better the team should be performing. The idea was to see if there was a statistical difference between the scores of the Championship Teams vs. those of the teams that made it far in the playoffs but did not win. I wanted to explore and see if calculating the FFBS Score of teams currently in the 2018 playoffs would provide me with any indication of which team is most likely to win the Championship this year.
 ```{r, echo=FALSE}
 FFBSchampplot
 ```
 
 ### The plot above is a bar plot showing the FFBS Scores of the Championship teams from 1996 through 2016. 
 
-### I conducted a T-test between the mean FFBS Scores of the Championship teams versus that of their competitors who made it far in the playoffs but did not win. The results of that test shown below tell us that there is no statistical difference between the mean scores of the champions compared to the non-champions. This suggests that FFBS scores may not be the best indicator of a team's playoff success. 
+### I conducted a T-test between the mean FFBS Scores of the Championship teams versus that of their competitors who made it far in the playoffs but did not win. The results of that test shown below tells us that there is no statistical difference between the mean scores of the champions compared to the non-champions. This suggests that FFBS scores may not be the best indicator of a team's playoff success. 
 
 ```{r, echo=FALSE}
 t.test(champscores$FFBSScore, nonchampscores$FFBSScore, var.equal = T)
